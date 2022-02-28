@@ -1,0 +1,61 @@
+.progress-card{
+    font-size: 16rem;
+    display: inline-flex;
+    flex-direction: column;
+    padding: 10px;
+    border-radius: 10px;
+    height: 40vh;
+    background-color: #ffffffcc;
+}
+
+.progress-card__title{
+    display: inline;
+}
+
+.progress-card__content{
+    display: flex;
+    
+}
+
+
+
+.progress-card__content{
+    height: 85%;
+}
+
+.progress-bar-vertical {
+    width: 10em;
+    /* min-height: 30vh; */
+    height: 100% !important;
+    display: flex;
+    align-items: flex-end;
+    /* margin-right: 20px; */
+    margin: .5em;
+    float: left;
+    position:relative
+  }
+
+  .progress-bar-vertical > svg{
+    position:absolute; 
+    left: 0; 
+    top: 0;
+    height: 100%;
+  }
+
+.forfeits{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    height: 100%
+}
+
+  .forfeit{
+    /* height: auto; */
+    margin: 8px;
+    padding: 6px;
+    border-radius: 10px;
+  }
+  .forfeit > * {
+      margin: 0;
+  }

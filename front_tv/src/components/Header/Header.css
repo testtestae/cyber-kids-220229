@@ -1,0 +1,16 @@
+header{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+header > div{
+    border-radius: 0 0 1em 1em;
+    background-color: #ffffffee;
+    display: inline-block;
+    padding: .5em;
+}
+
+header > div > *{
+    text-transform: uppercase;
+    display: inline;
+}
