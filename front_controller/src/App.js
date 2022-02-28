@@ -20,7 +20,7 @@ function App() {
     socket.on("responseCommandsList",(msg)=>{
       setCommandList(msg);
     });
-  });
+  },[]);
   useEffect(()=>{
     socket.on("responseKeyStatePoints",(msg)=>{
       if (msg.team === currentTeam) {

@@ -3,6 +3,7 @@
     display: inline-flex;
     flex-direction: column;
     padding: 10px;
+    margin: 10px;
     border-radius: 10px;
     height: 40vh;
     background-color: #ffffffcc;
@@ -35,7 +36,7 @@
     position:relative
   }
 
-  .progress-bar-vertical > svg{
+  .progress-bar-vertical > .scale{
     position:absolute; 
     left: 0; 
     top: 0;

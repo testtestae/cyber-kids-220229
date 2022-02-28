@@ -5,6 +5,8 @@ const server = http.createServer(app);
 var cors = require('cors')
 const io = require('socket.io')(server, {cors: {origin: '*'}});
 
+
+
 app.use(cors(
     {
         origin: '*'
@@ -38,9 +40,10 @@ let keyStatePointsListTeams = [
             team: e.title
             , panicLevel: 0
             , states: [
-                {title:"Пароль на винде", state:false}
-                , {title:"Пароль на архиве", state:false}
-                , {title:"Пароль на сайте", state:false}
+                {title:"Узнали чей ноутбук", state:false, weight:25}
+                , {title:"Пароль на винде", state:false, weight:25}
+                , {title:"Пароль на архиве", state:false, weight:25}
+                , {title:"Пароль на сайте", state:false, weight:25}
             ]
             
         })

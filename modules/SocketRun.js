@@ -10,9 +10,12 @@ function SocketRun(io
         console.log('socket run');
         io.on('connection', (socket) => {
             // console.log('socket connected');
-            socket.on("panic", (msg)=>{
-                console.log(msg);
-            })
+
+            let changesApply = (i)=>{
+                io.emit("responseAllCommandInfo", keyStatePointsListTeams);
+                io.emit("responseKeyStatePoints", keyStatePointsListTeams[i]);
+                io.emit("responseKeyStatePoints", keyStatePointsListTeams[i])
+            }
 
             socket.on("requestCommandsList", ()=>{
                 io.emit("responseCommandsList", commandList)
@@ -25,8 +28,7 @@ function SocketRun(io
                             team.states.map((teamState)=>{
                                 if (teamState.title === msg.field) {
                                     teamState.state = msg.status;
-                                    io.emit("responseKeyStatePoints", keyStatePointsListTeams[i]);
-                                    console.log(keyStatePointsListTeams[i]);
+                                    changesApply(i)
                                 }
                             })
                         }
@@ -37,7 +39,7 @@ function SocketRun(io
                 if (msg.requestTeam !== undefined) {    //just request team info
                     commandList.map((e, i)=>{
                         if (e.title === msg.requestTeam) {
-                            io.emit("responseKeyStatePoints", keyStatePointsListTeams[i])
+                            changesApply(i)
                             console.log(`change to ${msg.requestTeam} team`);
                             console.log(keyStatePointsListTeams[i]);
                         }
@@ -52,8 +54,13 @@ function SocketRun(io
                     if (team.team === msg.team) {
                         console.log(team);
                         team.panicLevel = team.panicLevel + Number(msg.level) ;
+                        changesApply(i);
                     }
                 })
+            })
+
+            socket.on("requestAllCommandInfo", ()=>{
+                io.emit("responseAllCommandInfo", keyStatePointsListTeams)
             })
             // chairsData.map((chair)=>{
             //     socket.on(chair.topic, msg => {
