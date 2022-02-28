@@ -20,17 +20,21 @@ let ProgressCard = (props) => {
                 elems.push(<Forfeit/>);
             }
         setForfeits(<>{elems}</>);
-    }, [dangerLevel])
+    }, [dangerLevel]);
 
     useEffect(()=>{
         setDangerLevel(props.payload.panicLevel);
+    });
+
+    useEffect(()=>{
+        let activeElements = 0;
         props.payload.states.map((e)=>{
-            setProgressLevel(0)
             if (e.state) {
-                setProgressLevel(progressLevel + e.weight)
+                activeElements += e.weight
+                // setProgressLevel(progressLevel + e.weight)
             }
         })
-    
+        setProgressLevel(activeElements)
     })
 
     return(
@@ -62,15 +66,14 @@ let ProgressCard = (props) => {
             </div>
 
             <div className="danger-level progress progress-bar-vertical">
-                {/* {scale} */}
                 <img src={scale} className="scale"/>
                 <div className="progress-bar progress-bar-striped bg-danger" 
-                    // role="progressbar" 
-                    // aria-valuenow="100" 
-                    // aria-valuemin="0" 
-                    // aria-valuemax="100" 
+                    role="progressbar" 
+                    aria-valuenow="100" 
+                    aria-valuemin="0" 
+                    aria-valuemax="100" 
                     style={{
-                        height: dangerLevel>100?dangerLevel%100:dangerLevel +"%"
+                        height: (dangerLevel>100?dangerLevel%100:dangerLevel) +"%"
                         , width: "100%"
                     }}
                 >

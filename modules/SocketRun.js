@@ -14,11 +14,14 @@ function SocketRun(io
             let changesApply = (i)=>{
                 io.emit("responseAllCommandInfo", keyStatePointsListTeams);
                 io.emit("responseKeyStatePoints", keyStatePointsListTeams[i]);
-                io.emit("responseKeyStatePoints", keyStatePointsListTeams[i])
             }
 
             socket.on("requestCommandsList", ()=>{
                 io.emit("responseCommandsList", commandList)
+            })
+
+            socket.on("requestAllCommandInfo", ()=>{
+                io.emit("responseAllCommandInfo", keyStatePointsListTeams)
             })
 
             socket.on("keyStatePoints", (msg)=>{
@@ -49,30 +52,16 @@ function SocketRun(io
             })
 
             socket.on("panic", (msg)=>{
-                // console.log(msg);
                 keyStatePointsListTeams.map((team, i)=>{
                     if (team.team === msg.team) {
-                        console.log(team);
                         team.panicLevel = team.panicLevel + Number(msg.level) ;
                         changesApply(i);
                     }
                 })
             })
 
-            socket.on("requestAllCommandInfo", ()=>{
-                io.emit("responseAllCommandInfo", keyStatePointsListTeams)
-            })
-            // chairsData.map((chair)=>{
-            //     socket.on(chair.topic, msg => {
-            //         console.log("i'm know you, " + chair.topic);
-            //         console.log(msg);
-            //         io.emit(chair.topic, chair);
-            //         // io.emit('chat message', msg);
-            //     });
-            // });
-            // socket.on('all', (msg)=>{
-            //     io.emit('all', chairsData);
-            // })
+
+
             io.on('disconnect', ()=>{
                 console.log('socket disconnected');
             })
