@@ -7,7 +7,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { useEffect, useState } from 'react';
 
 import { io } from "socket.io-client";
-const socket = io("http://localhost:800");
+const socket = io(`http://${document.location.host.split(":")[0]}:800`);
 
 function App() {
   const [teams, setTeams] = useState([])

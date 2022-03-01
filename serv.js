@@ -32,6 +32,18 @@ let commandList = [
     ,{
         "title":"Шесть"
     }
+    ,{
+        "title":"Семь"
+    }
+    ,{
+        "title":"Восемь"
+    }
+    ,{
+        "title":"Девять"
+    }
+    ,{
+        "title":"Десять"
+    }
 ]
 
 let keyStatePointsListTeams = [

@@ -6,7 +6,9 @@ import MyModal from './components/MyModal/MyModal';
 import MainController from './components/MainController/MainController';
 
 import { io } from "socket.io-client";
-const socket = io("http://localhost:800");
+const socket = io(`http://${document.location.host.split(":")[0]}:800`);
+
+
 
 function App() {
   const [commandList, setCommandList] = useState([])
